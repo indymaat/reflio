@@ -271,11 +271,11 @@ create table affiliate_emails (
   email_sent boolean default false,
   created timestamp with time zone default timezone('utc'::text, now()) not null
 );
-alter table commissions enable row level security;
-create policy "Can view own user data." on commissions for select using (is_member_of(auth.uid(), team_id));
-create policy "Can update own user data." on commissions for update using (is_member_of(auth.uid(), team_id));
-create policy "Can insert own user data." on commissions for insert with check (is_member_of(auth.uid(), team_id));
-create policy "Can delete own user data." on commissions for delete using (is_member_of(auth.uid(), team_id));
+alter table affiliate_emails enable row level security;
+create policy "Can view own user data." on affiliate_emails for select using (is_member_of(auth.uid(), team_id));
+create policy "Can update own user data." on affiliate_emails for update using (is_member_of(auth.uid(), team_id));
+create policy "Can insert own user data." on affiliate_emails for insert with check (is_member_of(auth.uid(), team_id));
+create policy "Can delete own user data." on affiliate_emails for delete using (is_member_of(auth.uid(), team_id));
 
 /**
 * This trigger automatically creates a user entry when a new user signs up via Supabase Auth.
